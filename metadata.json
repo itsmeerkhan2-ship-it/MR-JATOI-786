@@ -1,0 +1,7 @@
+{
+  "name": "MR JATOI VIDEO",
+  "description": "Watch Videos • Create Videos • Earn Money. A modern video-sharing and creator earning platform with vertical feed, monetization, and wallet.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
