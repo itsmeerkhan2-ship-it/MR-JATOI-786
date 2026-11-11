@@ -24,6 +24,7 @@ import com.example.data.model.Video
 import com.example.data.repository.AppRepository
 import com.example.localization.AppLanguage
 import com.example.localization.AppStrings
+import com.example.ui.components.AiTutorialGuideSheet
 import com.example.ui.components.CommentsBottomSheet
 import com.example.ui.components.ReportVideoDialog
 import com.example.ui.components.ShareVideoDialog
@@ -55,6 +56,7 @@ fun HomeScreen(
     var activeCommentVideo by remember { mutableStateOf<Video?>(null) }
     var activeShareVideo by remember { mutableStateOf<Video?>(null) }
     var activeReportVideo by remember { mutableStateOf<Video?>(null) }
+    var showAiTutorialSheet by remember { mutableStateOf(false) }
 
     Box(modifier = modifier.fillMaxSize().background(LuxuryBlack)) {
         if (displayedVideos.isEmpty()) {
@@ -115,6 +117,37 @@ fun HomeScreen(
                         onFollowClick = { repository.toggleFollowCreator(video.creatorId) },
                         onCreatorClick = { onNavigateToCreator(video.creatorId) }
                     )
+
+                    if (video.id == "v_aistudio_tutorial") {
+                        Surface(
+                            shape = RoundedCornerShape(12.dp),
+                            color = GoldContainer.copy(alpha = 0.95f),
+                            border = androidx.compose.foundation.BorderStroke(1.dp, GoldPrimary),
+                            modifier = Modifier
+                                .align(Alignment.BottomStart)
+                                .padding(start = 16.dp, bottom = 145.dp)
+                                .clickable { showAiTutorialSheet = true }
+                        ) {
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp)
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.MonetizationOn,
+                                    contentDescription = null,
+                                    tint = GoldPrimary,
+                                    modifier = Modifier.size(16.dp)
+                                )
+                                Spacer(modifier = Modifier.width(6.dp))
+                                Text(
+                                    text = "🚀 App Building Guide (Tap to Read)",
+                                    color = GoldLight,
+                                    fontSize = 11.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -225,6 +258,14 @@ fun HomeScreen(
                     ).show()
                     activeReportVideo = null
                 }
+            )
+        }
+
+        // AI Tutorial Guide Bottom Sheet
+        if (showAiTutorialSheet) {
+            AiTutorialGuideSheet(
+                language = language,
+                onDismiss = { showAiTutorialSheet = false }
             )
         }
     }

@@ -35,6 +35,7 @@ import com.example.data.model.Video
 import com.example.data.repository.AppRepository
 import com.example.localization.AppLanguage
 import com.example.localization.AppStrings
+import com.example.ui.components.AiTutorialGuideSheet
 import com.example.ui.theme.*
 
 @Composable
@@ -49,6 +50,7 @@ fun DiscoverScreen(
     var searchQuery by remember { mutableStateOf("") }
     val categories = listOf("All", "Trending", "Pakistan", "Tech", "Food & Travel", "Earning Guide", "Music")
     var selectedCategory by remember { mutableStateOf("All") }
+    var showAiTutorialSheet by remember { mutableStateOf(false) }
 
     val filteredVideos = remember(videos, searchQuery, selectedCategory) {
         videos.filter { video ->
@@ -161,6 +163,72 @@ fun DiscoverScreen(
                             fontSize = 12.sp
                         )
                     }
+                }
+            }
+        }
+
+        // AI Studio App Builder Academy Banner
+        item {
+            Card(
+                shape = RoundedCornerShape(16.dp),
+                colors = CardDefaults.cardColors(containerColor = LuxuryBlack),
+                border = androidx.compose.foundation.BorderStroke(1.2.dp, GoldPrimary),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp, vertical = 6.dp)
+                    .clickable { showAiTutorialSheet = true }
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(
+                            Brush.horizontalGradient(
+                                colors = listOf(GoldContainer, LuxurySurfaceVariant)
+                            )
+                        )
+                        .padding(16.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier
+                            .size(46.dp)
+                            .clip(CircleShape)
+                            .background(GoldPrimary)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.TrendingUp,
+                            contentDescription = null,
+                            tint = LuxuryBlack,
+                            modifier = Modifier.size(26.dp)
+                        )
+                    }
+                    Spacer(modifier = Modifier.width(12.dp))
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text(
+                            text = "CREATOR ACADEMY • FREE TUTORIAL",
+                            color = GoldPrimary,
+                            fontSize = 10.sp,
+                            fontWeight = FontWeight.Bold,
+                            letterSpacing = 1.sp
+                        )
+                        Text(
+                            text = "Build Apps Without Coding Using Google AI Studio!",
+                            color = TextWhite,
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Text(
+                            text = "Learn prompts, mobile phone creation, design & testing",
+                            color = GoldLight,
+                            fontSize = 11.sp
+                        )
+                    }
+                    Icon(
+                        imageVector = Icons.Default.PlayArrow,
+                        contentDescription = "Open",
+                        tint = GoldPrimary
+                    )
                 }
             }
         }
@@ -298,6 +366,13 @@ fun DiscoverScreen(
                 }
             }
         }
+    }
+
+    if (showAiTutorialSheet) {
+        AiTutorialGuideSheet(
+            language = language,
+            onDismiss = { showAiTutorialSheet = false }
+        )
     }
 }
 

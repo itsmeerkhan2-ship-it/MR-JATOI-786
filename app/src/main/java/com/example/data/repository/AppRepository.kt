@@ -413,6 +413,26 @@ class AppRepository private constructor() {
     private fun generateInitialVideos(): List<Video> {
         return listOf(
             Video(
+                id = "v_aistudio_tutorial",
+                creatorId = "creator_1",
+                creatorName = "Musadiq Hussain Jatoi",
+                creatorHandle = "musadiq_jatoi",
+                creatorAvatar = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&q=80",
+                title = "Build Your Own Mobile App Without Coding Using Google AI Studio! 🚀📱 Step-by-Step Tutorial",
+                description = "Have you ever wanted to create your own mobile application but don't know how to code? Now, with the power of AI, you can turn your app ideas into reality without learning programming! Learn how to use AI prompts to create an app, customize its design, add features, and test on mobile.",
+                videoUrl = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+                thumbnailUrl = "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&q=80",
+                category = "Technology",
+                hashtags = listOf("#GoogleAIStudio", "#NoCodeApp", "#AIAppBuilder", "#MusadiqJatoi", "#MRJATOI", "#BuildAppsWithoutCoding"),
+                likesCount = 142800,
+                commentsCount = 5420,
+                sharesCount = 28900,
+                viewsCount = 1450000,
+                musicTitle = "Tech Inspiration - Google AI Beats",
+                isLiked = true,
+                isFollowing = true
+            ),
+            Video(
                 id = "v1",
                 creatorId = "creator_1",
                 creatorName = "Musadiq Hussain Jatoi",
@@ -517,6 +537,11 @@ class AppRepository private constructor() {
 
     private fun generateInitialComments(): Map<String, List<Comment>> {
         return mapOf(
+            "v_aistudio_tutorial" to listOf(
+                Comment("c_ai1", "v_aistudio_tutorial", "u_creator1", "Danish Ali", "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&q=80", "Brilliant video Jatoi Bhai! I built my first Android app in just 15 minutes using Google AI Studio without writing a single line of code! 🔥", "5m ago", 128, true),
+                Comment("c_ai2", "v_aistudio_tutorial", "u_creator2", "Fatima Noor", "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80", "The prompt engineering tips are golden. So helpful for beginners and YouTubers in Pakistan.", "18m ago", 76, true),
+                Comment("c_ai3", "v_aistudio_tutorial", "u_creator3", "Kamran Tech", "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80", "Testing on mobile using prompt refinement is a game changer! Thanks for explaining free limits too.", "42m ago", 49, false)
+            ),
             "v1" to listOf(
                 Comment("c1", "v1", "u1", "Hamza Khan", "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80", "Zabardast initiative by Musadiq Jatoi! Pakistan creators really needed this platform.", "10m ago", 84, true),
                 Comment("c2", "v1", "u2", "Ayesha Malik", "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80", "The video player is so smooth and black-gold theme looks very luxurious! 🌟", "25m ago", 42, false),
